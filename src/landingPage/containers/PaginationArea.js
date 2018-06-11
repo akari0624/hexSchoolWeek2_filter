@@ -9,6 +9,11 @@ const Wrapper = Styled.section`
 grid-column:1/3;
 grid-rows:3/4;
 border:1px solid purple;
+
+@media (max-width:${props => props.theme.mobileOneColumnWidth}){
+    grid-rows:4/5;
+}
+
 `
 
 
@@ -19,7 +24,7 @@ super(props)
 render(){
 
     return (
-        <Wrapper />
+        <Wrapper>底部分頁區</Wrapper>
     )
 }
     }
@@ -30,6 +35,7 @@ render(){
 
   }
 function mapStateToProps(state){
+    return {}
 }
 
 
