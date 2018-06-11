@@ -5,7 +5,7 @@ import {createStore, applyMiddleware} from 'redux'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import reducers from './reducers'
 
-import indexRouter from './indexRouter'
+import indexRouter from './landingPage/indexRouter'
 
 const createStoreWithMiddleware = applyMiddleware()(createStore)
 
