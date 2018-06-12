@@ -1,14 +1,17 @@
 import React from 'react'
 import Styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import AreaSpinnerHOC from '../../applevelthing/components/hoc/AreaLoadingSpinner'
+import LocationCard from '../components/LocationCard'
 
 
 const Wrapper = Styled.section`
 grid-column:2/3;
 grid-row:2/3;
 border:1px solid red;
+overflow-y:auto;
+background-color: #F2F2F2;
+
 
 @media (max-width:${props => props.theme.mobileOneColumnWidth}){
 grid-column:1/3;
@@ -17,27 +20,31 @@ grid-row:3/4;
 `
 
 
+const renderLocationCards = (dataArr) => (
+
+  dataArr.map(d => <LocationCard data={d} key={d.Id} />)
+)
+
+
+
 
 const ShowLocationsArea = props => {
 
+
   console.log('locaionArea', props.locationData)
   return (
-    <Wrapper> 右半景點區 </Wrapper>
+    <Wrapper> 
+      {renderLocationCards(props.locationData.records)}
+    </Wrapper>
   )
 }
 
 ShowLocationsArea.propTypes = {
 
-  locationData:PropTypes.object.isRequired,
+  locationData:PropTypes.object,
 }
 
 
-  function mapStateToProps(state) {
-    
-    const { locationData } = state
-    return {
-      locationData
-    }
-  }
 
-export default connect(mapStateToProps, null)(ShowLocationsArea)
+
+export default AreaSpinnerHOC(ShowLocationsArea)
