@@ -17,24 +17,11 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                use: [
-                    {
-                        loader: 'style-loader'
-                    }, {
-                        loader: 'css-loader'
-                    }, {
-                        loader: 'less-loader',
-                        options: {
-                            javascriptEnabled: true
-                        }
-                    }
-                ],
-                test: /\.less$/
-
-            },
-            {
-                use: ['style-loader', 'css-loader'],
-                test: /\.css$/
+                use: ['style-loader', 'css-loader',{loader:'less-loader', options: {
+                    javascriptEnabled: true
+                }
+            }],
+                test: /\.(css|less)$/
             },
             {
                 use:'file-loader',
@@ -53,7 +40,18 @@ module.exports = {
 
     ],
     resolve: {
-        extensions: ['*', '.js', '.jsx']
+        modules: [path.resolve(__dirname, 'node_modules'), 'node_modules'],
+        extensions: ['*', '.js', '.jsx'],
+        alias: { 
+            'react': path.resolve(__dirname, 'node_modules', 'react'),
+            'react-dom': path.resolve(__dirname, 'node_modules', 'react-dom'),
+            'styled-components': path.resolve(__dirname, 'node_modules', 'styled-components')
+      }
+    },
+    optimization: {
+        splitChunks: {
+            chunks:'all'
+        }
     },
     devServer: {
         historyApiFallback: true,
