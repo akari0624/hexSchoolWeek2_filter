@@ -43,7 +43,8 @@ padding-left:50px;
   width:100%;
   padding-left:0px;
 }
-
+align-self:flex-end
+margin-bottom:5px;
 `
 
 const SearchBarInnerWrapperForm = Styled.form`
@@ -72,11 +73,22 @@ const SearchInput = Styled.input`
 width:100%;
 background-color:#7828B4;
 border:unset;
+padding-left:20px;
+font-family: Roboto-Italic;
+font-size: 20px;
+color: rgba(255,255,255,0.50);
 
- 
   &:focus{
     outline:none;
   }
+
+
+
+@media (max-width:${props => props.theme.mobileOneColumnWidth}){
+font-family: Roboto-Italic;
+font-size: 20px;
+color: #9B9B9B;
+}
 `
 
 
@@ -88,7 +100,7 @@ class NavBar extends Component {
     super(props)
 
     this.state = {
-      searchText:'',
+      searchText:'鹽埕區',
       isSearchTextInvalid:false,
     }
   }
@@ -120,13 +132,12 @@ class NavBar extends Component {
       }
 
       this.props.fetch_LocationsData(this.state.searchText)
-      
+
 
 
     }
 
-    renderSearchInputWrapperFormByCondition = () => {
-      const {isSearchTextInvalid, searchText } = this.state
+    renderSearchInputWrapperFormByCondition = ({isSearchTextInvalid, searchText}) => {
 
       if(!isSearchTextInvalid){
         return (
@@ -147,7 +158,7 @@ class NavBar extends Component {
         <OuttestWrapper>
           <LogoWrapper>HaveFun</LogoWrapper>
           <SearchBarOutterWrapper>
-            {this.renderSearchInputWrapperFormByCondition()}
+            {this.renderSearchInputWrapperFormByCondition(this.state)}
           </SearchBarOutterWrapper>
   
         </OuttestWrapper>

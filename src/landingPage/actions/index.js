@@ -2,6 +2,8 @@ import {FETCH_LOCATION_DATA} from '../action-types'
 import axios from 'axios'
 import {LocationAPI_baseUrl} from '../../api_url'
 import { wrapToAction } from '../../utils'
+import { toggleLoadingState } from '../../applevelthing/actions'
+
 
 
 
@@ -33,15 +35,24 @@ export const fetch_LocationsData = (searchText) => {
   return dispatch => {
     const url = `${LocationAPI_baseUrl}&q=${searchText}`   
 
+    dispatch(toggleLoadingState())
+
     axios.get(url)
       .then(
-        response => dispatch(
-          wrapToAction(FETCH_LOCATION_DATA, onSuccessProcessLocationData(response.data))
-        ))
+        response => { 
+          dispatch(toggleLoadingState())
+          dispatch(wrapToAction(FETCH_LOCATION_DATA, onSuccessProcessLocationData(response.data)))
+          
+        }
+      
+      )
       .catch(
-        e => dispatch(
+        e => {dispatch(
           wrapToAction(FETCH_LOCATION_DATA, onErrorProcessLocationData(searchText, e))
-        ))
+        )
+        dispatch(toggleLoadingState())
+        }
+      )
     
   }
     

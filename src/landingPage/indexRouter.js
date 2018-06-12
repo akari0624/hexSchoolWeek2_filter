@@ -4,8 +4,8 @@ import Styled from 'styled-components'
 import FilterableSearchArea from './containers/FilterAbleSearchArea'
 import ShowLocationsArea from './containers/ShowLocationsArea'
 import PaginationArea from './containers/PaginationArea'
-
-
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 const IndexLandingpageWrapper = Styled.main`
 display:grid;
@@ -20,15 +20,45 @@ grid-template-rows:124px calc(100vh - 124px - 45px - 60%) 60% 45px;
 }
 `
 
-export default(props) => {
+const IndexRouter = (props) => {
+
+  // return (
+  //   <WholeScreenLoading isInLoading={props.isInLoading}>
+  //     <IndexLandingpageWrapper>
+  //       <NavBar />
+  //       <FilterableSearchArea />
+  //       <ShowLocationsArea />
+  //       <PaginationArea />
+  //     </IndexLandingpageWrapper>
+  //   </WholeScreenLoading> 
+  // )
 
   return (
-    <IndexLandingpageWrapper>
-      <NavBar />
-      <FilterableSearchArea />
-      <ShowLocationsArea />
-      <PaginationArea />
-    </IndexLandingpageWrapper>
+    
+      <IndexLandingpageWrapper>
+        <NavBar />
+        <FilterableSearchArea />
+        <ShowLocationsArea />
+        <PaginationArea />
+      </IndexLandingpageWrapper>
+    
   )
 
 }
+
+
+
+function mapStateToProps(state){
+
+  return {isInLoading : state.appConditionNow.isInLoading}
+
+}
+
+
+IndexRouter.propTypes = {
+
+  isInLoading:PropTypes.bool,
+}
+
+
+export default connect(mapStateToProps, null)(IndexRouter)
