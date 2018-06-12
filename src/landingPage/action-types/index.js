@@ -1,1 +1,1 @@
-export const myType = "FIRST-TYPE"
+export const FETCH_LOCATION_DATA = 'FETCH_DATA'

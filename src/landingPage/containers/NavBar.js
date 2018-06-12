@@ -3,6 +3,7 @@ import Styled from 'styled-components'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {bindActionCreators} from 'redux'
+import { fetch_LocationsData } from '../actions'
 
 
 
@@ -45,9 +46,20 @@ padding-left:50px;
 
 `
 
-const SearchBarInnerWrapper = Styled.div`
+const SearchBarInnerWrapperForm = Styled.form`
 width:70%;
 border-bottom:2px solid #FFFFFF;
+margin-bottom:24.5px;
+
+@media (max-width:${props => props.theme.mobileOneColumnWidth}){
+  padding:5px auto;
+  margin-bottom:0px;
+}
+`
+
+const InvalidSearchBarInnerWrapperForm = Styled.form`
+width:70%;
+border-bottom:2px solid red;
 margin-bottom:24.5px;
 
 @media (max-width:${props => props.theme.mobileOneColumnWidth}){
@@ -59,40 +71,100 @@ margin-bottom:24.5px;
 const SearchInput = Styled.input`
 width:100%;
 background-color:#7828B4;
-opacity:0;
+border:unset;
+
+ 
+  &:focus{
+    outline:none;
+  }
 `
 
 
 
+
+
 class NavBar extends Component {
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      searchText:'',
+      isSearchTextInvalid:false,
+    }
+  }
+
+    handleSearchTextChange = e => {
+      const searchText = e.target.value
+      const { isSearchTextInvalid } = this.state
+      if(isSearchTextInvalid && searchText !== ''){
+        const newIsSearchTextInvalid = false;
+        this.setState({
+          searchText,
+          isSearchTextInvalid:newIsSearchTextInvalid,
+        })
+      }
+      else{ 
+        this.setState({
+          searchText
+        })
+      }
     }
 
-  render() {
+    handleSearchTextSubmit = e => {
+      e.preventDefault()
+      if(this.state.searchText === ''){
+        this.setState({
+          isSearchTextInvalid:true,
+        })
+        return
+      }
 
-    return(
-      <OuttestWrapper>
-        <LogoWrapper>HaveFun</LogoWrapper>
-        <SearchBarOutterWrapper>
-          <SearchBarInnerWrapper>
-            <SearchInput placeHolder="Explore your own activities" />  
-          </SearchBarInnerWrapper>
-        </SearchBarOutterWrapper>
+      this.props.fetch_LocationsData(this.state.searchText)
+      
+
+
+    }
+
+    renderSearchInputWrapperFormByCondition = () => {
+      const {isSearchTextInvalid, searchText } = this.state
+
+      if(!isSearchTextInvalid){
+        return (
+          <SearchBarInnerWrapperForm onSubmit={this.handleSearchTextSubmit}>  
+            <SearchInput placeHolder="Explore your own activities" value={searchText} onChange={this.handleSearchTextChange}/>  
+          </SearchBarInnerWrapperForm>
+        )
+      }
+      return(
+        <InvalidSearchBarInnerWrapperForm onSubmit={this.handleSearchTextSubmit}>  
+          <SearchInput placeHolder="Explore your own activities" value={searchText} onChange={this.handleSearchTextChange}/>  
+        </InvalidSearchBarInnerWrapperForm>
+      )
+    }
+
+    render() {
+      return(
+        <OuttestWrapper>
+          <LogoWrapper>HaveFun</LogoWrapper>
+          <SearchBarOutterWrapper>
+            {this.renderSearchInputWrapperFormByCondition()}
+          </SearchBarOutterWrapper>
   
-      </OuttestWrapper>
-    )
-  }
+        </OuttestWrapper>
+      )
+    }
 }
 
-NavBar.propTypes = {}
+NavBar.propTypes = {
+  fetch_LocationsData:PropTypes.func.isRequired,
+}
 
 function mapStateToProps(state) {
   return {}
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({}, dispatch)
+  return bindActionCreators({fetch_LocationsData}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar)

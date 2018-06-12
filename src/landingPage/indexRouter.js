@@ -2,7 +2,7 @@ import React from 'react'
 import NavBar from './containers/NavBar'
 import Styled from 'styled-components'
 import FilterableSearchArea from './containers/FilterAbleSearchArea'
-import ShowLocationsArea from './components/ShowLocationsArea'
+import ShowLocationsArea from './containers/ShowLocationsArea'
 import PaginationArea from './containers/PaginationArea'
 
 

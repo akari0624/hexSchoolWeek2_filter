@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
-
+import locationData from './LocationDataReducer'
 
 const rootReducer = combineReducers({
 
-    state:(state= {}) => state
+  locationData
 })
 
 
