@@ -10,6 +10,7 @@ grid-column:1/3;
 grid-rows:3/4;
 border:1px solid purple;
 
+
 @media (max-width:${props => props.theme.mobileOneColumnWidth}){
     grid-rows:4/5;
 }

@@ -12,6 +12,7 @@ grid-column:1/2;
 grid-row:2/3;
 border:1px solid black;
 
+
 @media (max-width:${props => props.theme.mobileOneColumnWidth}){
 grid-column:1/3;
 grid-row:2/3;

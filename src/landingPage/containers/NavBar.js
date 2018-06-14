@@ -14,6 +14,7 @@ background-color:#7828B4;
 grid-column:1/3;
 grid-row:1/2;
 
+
 @media (max-width:${props => props.theme.mobileOneColumnWidth}){
   flex-direction:column
 }

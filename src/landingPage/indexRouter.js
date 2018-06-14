@@ -31,6 +31,7 @@ class  IndexRouter extends Component {
     this.state = {
       isOpen:false,   
       data:null,
+      detailPageClicked:false,
     }
 
   }
@@ -40,12 +41,14 @@ class  IndexRouter extends Component {
     this.setState({
       data,
       isOpen:true,
+      detailPageClicked:true,
     })
   }
 
   toggleDisplay = () => {
     this.setState({
       isOpen:false,
+      detailPageClicked:false,
     })
   }
 
@@ -54,14 +57,17 @@ class  IndexRouter extends Component {
 
         
       <IndexLandingpageWrapper>
-        <AnimatedLocationDetailCard
-          data={this.state.data}  
-          isOpen={this.isOpen} 
-          close={this.toggleDisplay}
-        />
         <NavBar />
         <FilterableSearchArea />
-        <ShowLocationsArea   setClickedData={ this.setClickedData }  />
+        <ShowLocationsArea>
+          {(data,isOpen,toggle) => (
+            <AnimatedLocationDetailCard
+              data={data}  
+              isOpen={isOpen} 
+              close={toggle}
+            />
+          )}
+        </ShowLocationsArea>
         <PaginationArea />
       </IndexLandingpageWrapper>
     

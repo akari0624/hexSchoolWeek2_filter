@@ -6,55 +6,53 @@ import PropTypes from 'prop-types'
 
 
 const rightToLeft = keyframes`
-  from { transform:translate3d(0px,0,0);}
+   from { transform:translateX(100vw);}
+  
+  to { transform:translateX(0vw);}
+`
+
+const leftToRight = keyframes`
+   from { transform:translate3d(0px,0,0);}
   
   to { transform:translate3d(100vw,0,0);}
 `
 
-const leftToRight = keyframes`
-  from { transform:translateX(-100vw);}
-  
-  to { transform:translateX(100vw);}
-`
-
 
 const OutOfFlowWrapper = Styled.div`
-  top:0px;
+  top:92px;
   left:0px;
-  display:fixed;
+  position:absolute;
   overflow-y:auto;
   width:100vw;
-  height:100vh;
-  transform:translate3d(-100vw, 0, 0);
+  transform:translate3d(100vw, 0, 0);
   z-index:500;
   background-color:#FFFFFF;
 `
 
 
 const OutOfFlowWrapperRToL = Styled.div`
-  top:0px;
+  top:92px;
   right:0px;
-  display:fixed;
+  position:absolute;
   overflow-y:auto;
   width:100vw;
-  height:100vh;
   z-index:500;
   transform:translate3d(-100vw, 0, 0);
   cursor:pointer;
   background-color:#FFFFFF;
-  animation: ${leftToRight} 3s forwards;
+  animation: ${rightToLeft} 1s forwards;
 `
 
 const OutOfFlowWrapperLToR = Styled.div`
   margin:25px 40px 25px 40px;
-  top:200px;
-  right:0px;
-  display:fixed;
+  top:92px;
+  left:0px;
+  position:fixed;
   overflow-y:auto;
-  transform:translate3d(-500px, 0, 0);
-  animation: ${leftToRight} 1s; 
+  transform:translate3d(0, 0, 0);
   z-index:500;
   cursor:pointer;
+  animation: ${leftToRight} 1s forwards;
 `
 
 const CardWrapper = Styled.article`
@@ -115,13 +113,25 @@ class  AnimatedLocationDetailCard extends Component{
   constructor(props){
     super(props)  
 
+
+    // this.state = {
+    //   hide:false
+    // }
   }
+
+  //  hideSelf = ()  => {
+  //    this.setState({ 
+  //      hide:true
+  //    })
+
+  //  }
+
 
 
   render(){
     const {data} = this.props
 
-    if(!data){
+    if(!data){  //when react init loaded in 
       return null
     }
 
@@ -141,6 +151,7 @@ class  AnimatedLocationDetailCard extends Component{
         </OutOfFlowWrapper>  
       )
     }else{
+
       return (
         <OutOfFlowWrapperRToL  onClick={this.props.close}>
           <CardWrapper> 
@@ -156,6 +167,27 @@ class  AnimatedLocationDetailCard extends Component{
         </OutOfFlowWrapperRToL>
       )
     }
+    // else if(this.state.hide){
+
+    //   return(
+    //     <OutOfFlowWrapperLToR>
+    //       <CardWrapper> 
+    //         <LocationImageWrapper>
+    //           <LocationImage src={data.Picture1} alt={data.Picdescribe1} />
+    //         </LocationImageWrapper>
+    //         <LocationInfoWrapper>
+    //           <LocationNameDIV>{data.Name}</LocationNameDIV>
+    //           <MoreInfoSection>{data.Zone}</MoreInfoSection>
+    //           <DescriptionSection>{data.Toldescribe}</DescriptionSection>
+    //         </LocationInfoWrapper>
+    //       </CardWrapper>
+    //     </OutOfFlowWrapperLToR>
+
+    //   )
+    // }else{
+
+    //   throw new Error('unexpected condition')  
+    // }
       
        
       
