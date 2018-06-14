@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Styled, { keyframes } from 'styled-components'
 import PropTypes from 'prop-types'
 
@@ -108,93 +108,48 @@ const MoreInfoSection = Styled.section`
 
 
 
-class  AnimatedLocationDetailCard extends Component{
-
-  constructor(props){
-    super(props)  
+const  AnimatedLocationDetailCard   = (props) => {
 
 
-    // this.state = {
-    //   hide:false
-    // }
+
+ 
+  const {data} = props
+  if(!data){  //when react init loaded in 
+    return null
   }
+  if(!props.isOpen){
+    return (
+      <OutOfFlowWrapper>  
+        <CardWrapper> 
+          <LocationImageWrapper>
+            <LocationImage src={data.Picture1} alt={data.Picdescribe1} />
+          </LocationImageWrapper>
+          <LocationInfoWrapper>
+            <LocationNameDIV>{data.Name}</LocationNameDIV>
+            <MoreInfoSection>{data.Zone}</MoreInfoSection>
+            <DescriptionSection>{data.Toldescribe}</DescriptionSection>
+          </LocationInfoWrapper>
+        </CardWrapper>
+      </OutOfFlowWrapper>  
+    )
+  }else{
 
-  //  hideSelf = ()  => {
-  //    this.setState({ 
-  //      hide:true
-  //    })
-
-  //  }
-
-
-
-  render(){
-    const {data} = this.props
-
-    if(!data){  //when react init loaded in 
-      return null
-    }
-
-    if(!this.props.isOpen){
-      return (
-        <OutOfFlowWrapper>  
-          <CardWrapper> 
-            <LocationImageWrapper>
-              <LocationImage src={data.Picture1} alt={data.Picdescribe1} />
-            </LocationImageWrapper>
-            <LocationInfoWrapper>
-              <LocationNameDIV>{data.Name}</LocationNameDIV>
-              <MoreInfoSection>{data.Zone}</MoreInfoSection>
-              <DescriptionSection>{data.Toldescribe}</DescriptionSection>
-            </LocationInfoWrapper>
-          </CardWrapper>
-        </OutOfFlowWrapper>  
-      )
-    }else{
-
-      return (
-        <OutOfFlowWrapperRToL  onClick={this.props.close}>
-          <CardWrapper> 
-            <LocationImageWrapper>
-              <LocationImage src={data.Picture1} alt={data.Picdescribe1} />
-            </LocationImageWrapper>
-            <LocationInfoWrapper>
-              <LocationNameDIV>{data.Name}</LocationNameDIV>
-              <MoreInfoSection>{data.Zone}</MoreInfoSection>
-              <DescriptionSection>{data.Toldescribe}</DescriptionSection>
-            </LocationInfoWrapper>
-          </CardWrapper>
-        </OutOfFlowWrapperRToL>
-      )
-    }
-    // else if(this.state.hide){
-
-    //   return(
-    //     <OutOfFlowWrapperLToR>
-    //       <CardWrapper> 
-    //         <LocationImageWrapper>
-    //           <LocationImage src={data.Picture1} alt={data.Picdescribe1} />
-    //         </LocationImageWrapper>
-    //         <LocationInfoWrapper>
-    //           <LocationNameDIV>{data.Name}</LocationNameDIV>
-    //           <MoreInfoSection>{data.Zone}</MoreInfoSection>
-    //           <DescriptionSection>{data.Toldescribe}</DescriptionSection>
-    //         </LocationInfoWrapper>
-    //       </CardWrapper>
-    //     </OutOfFlowWrapperLToR>
-
-    //   )
-    // }else{
-
-    //   throw new Error('unexpected condition')  
-    // }
-      
-       
-      
-      
-
+    return (
+      <OutOfFlowWrapperRToL  onClick={props.close}>
+        <CardWrapper> 
+          <LocationImageWrapper>
+            <LocationImage src={data.Picture1} alt={data.Picdescribe1} />
+          </LocationImageWrapper>
+          <LocationInfoWrapper>
+            <LocationNameDIV>{data.Name}</LocationNameDIV>
+            <MoreInfoSection>{data.Zone}</MoreInfoSection>
+            <DescriptionSection>{data.Toldescribe}</DescriptionSection>
+          </LocationInfoWrapper>
+        </CardWrapper>
+      </OutOfFlowWrapperRToL>
+    )
   }
-
+    
 
 
 }

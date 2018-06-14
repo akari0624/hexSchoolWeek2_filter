@@ -3,8 +3,6 @@ import Styled from 'styled-components'
 import PropTypes from 'prop-types'
 import AreaSpinnerHOC from '../../applevelthing/components/hoc/AreaLoadingSpinner'
 import LocationCard from '../components/LocationCard'
-import LocationDetailCard from '../components/LocationDetailCard'
-import  AnimatedLocationDetailCard from '../components/AnimatedLocationDetailCard'
 
 const Wrapper = Styled.section`
   grid-column:2/3;
