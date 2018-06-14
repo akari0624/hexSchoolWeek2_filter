@@ -12,9 +12,9 @@ const rightToLeft = keyframes`
 `
 
 const leftToRight = keyframes`
-   from { transform:translate3d(0px,0,0);}
+   from { transform:translateX(0);}
   
-  to { transform:translate3d(100vw,0,0);}
+  to { transform:translateX(100vw);}
 `
 
 
@@ -24,7 +24,7 @@ const OutOfFlowWrapper = Styled.div`
   position:absolute;
   overflow-y:auto;
   width:100vw;
-  transform:translate3d(100vw, 0, 0);
+  transform:translateX(100vw);
   z-index:500;
   background-color:#FFFFFF;
 `
@@ -37,7 +37,7 @@ const OutOfFlowWrapperRToL = Styled.div`
   overflow-y:auto;
   width:100vw;
   z-index:500;
-  transform:translate3d(-100vw, 0, 0);
+  transform:translateX(-100vw);
   cursor:pointer;
   background-color:#FFFFFF;
   animation: ${rightToLeft} 1s forwards;
@@ -49,7 +49,7 @@ const OutOfFlowWrapperLToR = Styled.div`
   left:0px;
   position:fixed;
   overflow-y:auto;
-  transform:translate3d(0, 0, 0);
+  transform:translateX(0);
   z-index:500;
   cursor:pointer;
   animation: ${leftToRight} 1s forwards;
