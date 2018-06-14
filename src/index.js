@@ -6,7 +6,6 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import {ThemeProvider} from 'styled-components'
 import reducers from './reducers'
 import indexRouter from './landingPage/indexRouter'
-import locationDetailRouter from './landingPage/locationDetailRouter'
 import reduxThunk from 'redux-thunk'
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore)
@@ -24,7 +23,6 @@ ReactDOM.render(
       <BrowserRouter>
         <div>
           <Switch>
-            <Route path="/location/:id" component={locationDetailRouter} />
             <Route path="/" component={indexRouter}/>
           </Switch>
         </div>
