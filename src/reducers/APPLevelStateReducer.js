@@ -6,7 +6,6 @@ const DefaultAppLevelState = {isInLoading:false}
 
 const reverseIsLoading = (state) => {
 
-  console.log('hi')
   const newState = {...state}
 
   newState.isInLoading = !state.isInLoading

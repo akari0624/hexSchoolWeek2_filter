@@ -1,7 +1,6 @@
 import React from 'react'
 import Styled from 'styled-components'
 import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom';
 
 const CardWrapper = Styled.article`
 
@@ -30,41 +29,40 @@ const LocationImageWrapper = Styled.figure`
 
 const LocationImage = Styled.img`
 
-width:100%;
+  width:100%;
 
 `
 
-
 const LocationInfoWrapper = Styled.section`
-padding-left:20px;
-width:65%;
-@media (max-width:${props => props.theme.padWidth}){
-  width:100%;
-height:auto;
+  padding-left:20px;
+  width:65%;
+  @media (max-width:${props => props.theme.padWidth}){
+    width:100%;
+  height:auto;
 }
 
 `
 
 const LocationNameDIV = Styled.div`
-margin-top:12px;
-font-size:24px;
-color:#9013FE;
-font-family:Roboto-Bold;
+  margin-top:12px;
+  font-size:24px;
+  color:#9013FE;
+  font-family:Roboto-Bold;
 `
 
 const DescriptionSection = Styled.section`
-margin-top:16px;
-font-family: Roboto-Regular;
-font-size: 16px;
-color: #000000;
-line-height: 24px;
+  margin-top:16px;
+  font-family: Roboto-Regular;
+  font-size: 16px;
+  color: #000000;
+  line-height: 24px;
 `
 
 const MoreInfoSection = Styled.section`
-margin-top:8px;
-font-family: Roboto-Bold;
-font-size: 16px;
-color: #000000;
+  margin-top:8px;
+  font-family: Roboto-Bold;
+  font-size: 16px;
+  color: #000000;
 `
 
 
@@ -91,7 +89,6 @@ const LocationCard = ({data, onItemClick}) => {
   
 
   return (
-   // <Link to={`/location/${data.Id}`} style={{textDecoration:'none'}}>
     <CardWrapper onClick={handleOnLocationCardClick}> 
       <LocationImageWrapper>
         <LocationImage src={data.Picture1} alt={data.Picdescribe1} />
@@ -102,7 +99,6 @@ const LocationCard = ({data, onItemClick}) => {
         <MoreInfoSection>{data.Zone}</MoreInfoSection>
       </LocationInfoWrapper>
     </CardWrapper>
-  //  </Link>
   )
 
 }

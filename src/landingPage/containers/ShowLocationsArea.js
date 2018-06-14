@@ -3,8 +3,6 @@ import Styled from 'styled-components'
 import PropTypes from 'prop-types'
 import AreaSpinnerHOC from '../../applevelthing/components/hoc/AreaLoadingSpinner'
 import LocationCard from '../components/LocationCard'
-import LocationDetailCard from '../components/LocationDetailCard'
-import  AnimatedLocationDetailCard from '../components/AnimatedLocationDetailCard'
 
 const Wrapper = Styled.section`
   grid-column:2/3;
@@ -34,33 +32,43 @@ const getSpecifiedIdData = (id, dataArr) => {
 
 
 
-const ShowLocationsArea = props =>  {
+class ShowLocationsArea extends Component{
 
+   state = {
+     clickedItemId:'',
+     isOpen:false,
+   }
 
-
-  const handleOnItemClick  = (id) => {
+   handleOnItemClick  = (clickedItemId) => {
      
       
-    const clickedLocationData = getSpecifiedIdData(id, props.locationData.records)
-    props.setClickedData(clickedLocationData)
+     this.setState(
+       {clickedItemId,
+         isOpen:true,
+       })
+    
 
-  }
+   }
 
-  const renderLocationCards = (dataArr) => (
+   renderLocationCards = (dataArr) => (
 
-    dataArr.map(d => <LocationCard data={d} key={d.Id} onItemClick={handleOnItemClick} />)
-  )
+     dataArr.map(d => <LocationCard data={d} key={d.Id} onItemClick={this.handleOnItemClick} />)
+   )
 
-     
-  console.log('locaionArea', props.locationData)
+    handleClose = () => {
+      this.setState({
+        isOpen:false,
+      })
+    }   
 
-
-  return (
-    <Wrapper> 
-      {renderLocationCards(props.locationData.records)}
-    </Wrapper>
-  )
-
+    render(){
+      return (
+        <Wrapper> 
+          {this.props.children(getSpecifiedIdData(this.state.clickedItemId, this.props.locationData.records),this.state.isOpen ,this.handleClose)}
+          {this.renderLocationCards(this.props.locationData.records)}
+        </Wrapper>
+      )
+    }
 }
 
 

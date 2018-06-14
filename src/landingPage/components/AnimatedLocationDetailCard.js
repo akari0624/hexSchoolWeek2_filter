@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Styled, { keyframes } from 'styled-components'
 import PropTypes from 'prop-types'
 
@@ -6,55 +6,53 @@ import PropTypes from 'prop-types'
 
 
 const rightToLeft = keyframes`
-  from { transform:translate3d(0px,0,0);}
+   from { transform:translateX(100vw);}
   
-  to { transform:translate3d(100vw,0,0);}
+  to { transform:translateX(0vw);}
 `
 
 const leftToRight = keyframes`
-  from { transform:translateX(-100vw);}
+   from { transform:translateX(0);}
   
   to { transform:translateX(100vw);}
 `
 
 
 const OutOfFlowWrapper = Styled.div`
-  top:0px;
+  top:92px;
   left:0px;
-  display:fixed;
+  position:absolute;
   overflow-y:auto;
   width:100vw;
-  height:100vh;
-  transform:translate3d(-100vw, 0, 0);
+  transform:translateX(100vw);
   z-index:500;
   background-color:#FFFFFF;
 `
 
 
 const OutOfFlowWrapperRToL = Styled.div`
-  top:0px;
+  top:92px;
   right:0px;
-  display:fixed;
+  position:absolute;
   overflow-y:auto;
   width:100vw;
-  height:100vh;
   z-index:500;
-  transform:translate3d(-100vw, 0, 0);
+  transform:translateX(-100vw);
   cursor:pointer;
   background-color:#FFFFFF;
-  animation: ${leftToRight} 3s forwards;
+  animation: ${rightToLeft} 1s forwards;
 `
 
 const OutOfFlowWrapperLToR = Styled.div`
   margin:25px 40px 25px 40px;
-  top:200px;
-  right:0px;
-  display:fixed;
+  top:92px;
+  left:0px;
+  position:fixed;
   overflow-y:auto;
-  transform:translate3d(-500px, 0, 0);
-  animation: ${leftToRight} 1s; 
+  transform:translateX(0);
   z-index:500;
   cursor:pointer;
+  animation: ${leftToRight} 1s forwards;
 `
 
 const CardWrapper = Styled.article`
@@ -110,59 +108,48 @@ const MoreInfoSection = Styled.section`
 
 
 
-class  AnimatedLocationDetailCard extends Component{
+const  AnimatedLocationDetailCard   = (props) => {
 
-  constructor(props){
-    super(props)  
 
+
+ 
+  const {data} = props
+  if(!data){  //when react init loaded in 
+    return null
   }
+  if(!props.isOpen){
+    return (
+      <OutOfFlowWrapper>  
+        <CardWrapper> 
+          <LocationImageWrapper>
+            <LocationImage src={data.Picture1} alt={data.Picdescribe1} />
+          </LocationImageWrapper>
+          <LocationInfoWrapper>
+            <LocationNameDIV>{data.Name}</LocationNameDIV>
+            <MoreInfoSection>{data.Zone}</MoreInfoSection>
+            <DescriptionSection>{data.Toldescribe}</DescriptionSection>
+          </LocationInfoWrapper>
+        </CardWrapper>
+      </OutOfFlowWrapper>  
+    )
+  }else{
 
-
-  render(){
-    const {data} = this.props
-
-    if(!data){
-      return null
-    }
-
-    if(!this.props.isOpen){
-      return (
-        <OutOfFlowWrapper>  
-          <CardWrapper> 
-            <LocationImageWrapper>
-              <LocationImage src={data.Picture1} alt={data.Picdescribe1} />
-            </LocationImageWrapper>
-            <LocationInfoWrapper>
-              <LocationNameDIV>{data.Name}</LocationNameDIV>
-              <MoreInfoSection>{data.Zone}</MoreInfoSection>
-              <DescriptionSection>{data.Toldescribe}</DescriptionSection>
-            </LocationInfoWrapper>
-          </CardWrapper>
-        </OutOfFlowWrapper>  
-      )
-    }else{
-      return (
-        <OutOfFlowWrapperRToL  onClick={this.props.close}>
-          <CardWrapper> 
-            <LocationImageWrapper>
-              <LocationImage src={data.Picture1} alt={data.Picdescribe1} />
-            </LocationImageWrapper>
-            <LocationInfoWrapper>
-              <LocationNameDIV>{data.Name}</LocationNameDIV>
-              <MoreInfoSection>{data.Zone}</MoreInfoSection>
-              <DescriptionSection>{data.Toldescribe}</DescriptionSection>
-            </LocationInfoWrapper>
-          </CardWrapper>
-        </OutOfFlowWrapperRToL>
-      )
-    }
-      
-       
-      
-      
-
+    return (
+      <OutOfFlowWrapperRToL  onClick={props.close}>
+        <CardWrapper> 
+          <LocationImageWrapper>
+            <LocationImage src={data.Picture1} alt={data.Picdescribe1} />
+          </LocationImageWrapper>
+          <LocationInfoWrapper>
+            <LocationNameDIV>{data.Name}</LocationNameDIV>
+            <MoreInfoSection>{data.Zone}</MoreInfoSection>
+            <DescriptionSection>{data.Toldescribe}</DescriptionSection>
+          </LocationInfoWrapper>
+        </CardWrapper>
+      </OutOfFlowWrapperRToL>
+    )
   }
-
+    
 
 
 }

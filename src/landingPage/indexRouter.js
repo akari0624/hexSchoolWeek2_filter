@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import NavBar from './containers/NavBar'
 import Styled from 'styled-components'
 import FilterableSearchArea from './containers/FilterAbleSearchArea'
@@ -22,55 +22,33 @@ grid-template-rows:124px calc(100vh - 124px - 45px - 60%) 60% 45px;
 }
 `
 
-class  IndexRouter extends Component {
+const IndexRouter = (props) => {
 
 
-  constructor(props){
-    super(props)
-
-    this.state = {
-      isOpen:false,   
-      data:null,
-    }
-
-  }
-
-  setClickedData = (data) => {
-   
-    this.setState({
-      data,
-      isOpen:true,
-    })
-  }
-
-  toggleDisplay = () => {
-    this.setState({
-      isOpen:false,
-    })
-  }
-
-  render(){
-    return (
+  
+  return (
 
         
-      <IndexLandingpageWrapper>
-        <AnimatedLocationDetailCard
-          data={this.state.data}  
-          isOpen={this.isOpen} 
-          close={this.toggleDisplay}
-        />
-        <NavBar />
-        <FilterableSearchArea />
-        <ShowLocationsArea   setClickedData={ this.setClickedData }  />
-        <PaginationArea />
-      </IndexLandingpageWrapper>
+    <IndexLandingpageWrapper>
+      <NavBar />
+      <FilterableSearchArea />
+      <ShowLocationsArea>
+        {(data,isOpen,toggle) => (
+          <AnimatedLocationDetailCard
+            data={data}  
+            isOpen={isOpen} 
+            close={toggle}
+          />
+        )}
+      </ShowLocationsArea>
+      <PaginationArea />
+    </IndexLandingpageWrapper>
     
       
-    )
-  }
+  )
+  
 
 }
-
 
 
 function mapStateToProps(state){
