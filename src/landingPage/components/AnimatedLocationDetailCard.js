@@ -1,0 +1,177 @@
+import React, { Component } from 'react'
+import Styled, { keyframes } from 'styled-components'
+import PropTypes from 'prop-types'
+
+
+
+
+const rightToLeft = keyframes`
+  from { transform:translate3d(0px,0,0);}
+  
+  to { transform:translate3d(100vw,0,0);}
+`
+
+const leftToRight = keyframes`
+  from { transform:translateX(-100vw);}
+  
+  to { transform:translateX(100vw);}
+`
+
+
+const OutOfFlowWrapper = Styled.div`
+  top:0px;
+  left:0px;
+  display:fixed;
+  overflow-y:auto;
+  width:100vw;
+  height:100vh;
+  transform:translate3d(-100vw, 0, 0);
+  z-index:500;
+  background-color:#FFFFFF;
+`
+
+
+const OutOfFlowWrapperRToL = Styled.div`
+  top:0px;
+  right:0px;
+  display:fixed;
+  overflow-y:auto;
+  width:100vw;
+  height:100vh;
+  z-index:500;
+  transform:translate3d(-100vw, 0, 0);
+  cursor:pointer;
+  background-color:#FFFFFF;
+  animation: ${leftToRight} 3s forwards;
+`
+
+const OutOfFlowWrapperLToR = Styled.div`
+  margin:25px 40px 25px 40px;
+  top:200px;
+  right:0px;
+  display:fixed;
+  overflow-y:auto;
+  transform:translate3d(-500px, 0, 0);
+  animation: ${leftToRight} 1s; 
+  z-index:500;
+  cursor:pointer;
+`
+
+const CardWrapper = Styled.article`
+
+  width:calc(100% - 80px);
+  margin:25px 40px 25px 40px;
+  display:flex;
+  flex-direction:column;
+  background-color:#FFFFFF;
+
+`
+
+const LocationImageWrapper = Styled.figure`
+  width:100%;
+  height:auto;
+`
+
+const LocationImage = Styled.img`
+
+  width:100%;
+
+`
+
+
+const LocationInfoWrapper = Styled.section`
+  padding-left:20px;
+  width:100%;
+  height:auto;
+`
+
+const LocationNameDIV = Styled.div`
+  margin-top:12px;
+  font-size:24px;
+  color:#9013FE;
+  font-family:Roboto-Bold;
+`
+
+const DescriptionSection = Styled.section`
+  margin-top:16px;
+  font-family: Roboto-Regular;
+  font-size: 16px;
+  color: #000000;
+  line-height: 24px;
+`
+
+const MoreInfoSection = Styled.section`
+  margin-top:8px;
+  font-family: Roboto-Bold;
+  font-size: 16px;
+  color: #000000;
+`
+
+
+
+
+class  AnimatedLocationDetailCard extends Component{
+
+  constructor(props){
+    super(props)  
+
+  }
+
+
+  render(){
+    const {data} = this.props
+
+    if(!data){
+      return null
+    }
+
+    if(!this.props.isOpen){
+      return (
+        <OutOfFlowWrapper>  
+          <CardWrapper> 
+            <LocationImageWrapper>
+              <LocationImage src={data.Picture1} alt={data.Picdescribe1} />
+            </LocationImageWrapper>
+            <LocationInfoWrapper>
+              <LocationNameDIV>{data.Name}</LocationNameDIV>
+              <MoreInfoSection>{data.Zone}</MoreInfoSection>
+              <DescriptionSection>{data.Toldescribe}</DescriptionSection>
+            </LocationInfoWrapper>
+          </CardWrapper>
+        </OutOfFlowWrapper>  
+      )
+    }else{
+      return (
+        <OutOfFlowWrapperRToL  onClick={this.props.close}>
+          <CardWrapper> 
+            <LocationImageWrapper>
+              <LocationImage src={data.Picture1} alt={data.Picdescribe1} />
+            </LocationImageWrapper>
+            <LocationInfoWrapper>
+              <LocationNameDIV>{data.Name}</LocationNameDIV>
+              <MoreInfoSection>{data.Zone}</MoreInfoSection>
+              <DescriptionSection>{data.Toldescribe}</DescriptionSection>
+            </LocationInfoWrapper>
+          </CardWrapper>
+        </OutOfFlowWrapperRToL>
+      )
+    }
+      
+       
+      
+      
+
+  }
+
+
+
+}
+
+
+AnimatedLocationDetailCard.propTypes = {
+
+  data:PropTypes.object,
+
+  }
+
+export default AnimatedLocationDetailCard

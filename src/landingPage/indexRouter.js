@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import NavBar from './containers/NavBar'
 import Styled from 'styled-components'
 import FilterableSearchArea from './containers/FilterAbleSearchArea'
@@ -6,6 +6,8 @@ import ShowLocationsArea from './containers/ShowLocationsArea'
 import PaginationArea from './containers/PaginationArea'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+
+import AnimatedLocationDetailCard from './components/AnimatedLocationDetailCard'
 
 const IndexLandingpageWrapper = Styled.main`
 display:grid;
@@ -20,29 +22,52 @@ grid-template-rows:124px calc(100vh - 124px - 45px - 60%) 60% 45px;
 }
 `
 
-const IndexRouter = (props) => {
+class  IndexRouter extends Component {
 
-  // return (
-  //   <WholeScreenLoading isInLoading={props.isInLoading}>
-  //     <IndexLandingpageWrapper>
-  //       <NavBar />
-  //       <FilterableSearchArea />
-  //       <ShowLocationsArea />
-  //       <PaginationArea />
-  //     </IndexLandingpageWrapper>
-  //   </WholeScreenLoading> 
-  // )
 
-  return (
-    
+  constructor(props){
+    super(props)
+
+    this.state = {
+      isOpen:false,   
+      data:null,
+    }
+
+  }
+
+  setClickedData = (data) => {
+   
+    this.setState({
+      data,
+      isOpen:true,
+    })
+  }
+
+  toggleDisplay = () => {
+    this.setState({
+      isOpen:false,
+    })
+  }
+
+  render(){
+    return (
+
+        
       <IndexLandingpageWrapper>
+        <AnimatedLocationDetailCard
+          data={this.state.data}  
+          isOpen={this.isOpen} 
+          close={this.toggleDisplay}
+        />
         <NavBar />
         <FilterableSearchArea />
-        <ShowLocationsArea />
+        <ShowLocationsArea   setClickedData={ this.setClickedData }  />
         <PaginationArea />
       </IndexLandingpageWrapper>
     
-  )
+      
+    )
+  }
 
 }
 

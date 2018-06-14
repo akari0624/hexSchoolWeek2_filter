@@ -59,7 +59,7 @@ margin: 60px auto;
 
 const AreaLoadingSpinnerHOC = ComposedComponent =>  props  => (
 
-  props.isInLoading ?  <WholeAreaLoadingWrapperShow><Loader3 /></WholeAreaLoadingWrapperShow> : <ComposedComponent locationData={props.locationData}/>
+  props.isInLoading ?  <WholeAreaLoadingWrapperShow><Loader3 /></WholeAreaLoadingWrapperShow> : <ComposedComponent {...props}/>
    
 )
 
