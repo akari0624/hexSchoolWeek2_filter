@@ -83,10 +83,11 @@ AreaLoadingSpinnerHOC.propTypes = {
 
 function mapStateToProps(state) {
     
-  const { locationData } = state
+  const { locationData,currPageInfo } = state
   return {
     isInLoading : state.appConditionNow.isInLoading,
     locationData,
+    currPageInfo,
   }
 }
 

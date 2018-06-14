@@ -30,6 +30,19 @@ const getSpecifiedIdData = (id, dataArr) => {
   return arr[0]
 }
 
+const getSplicedData = (dataArr,  currPage, rowPerpage) =>  {
+
+  const dataLength = dataArr.length
+  const getMoreonePageRowOrToTheLastRow = (currPage, rowPerpage, dataLength) => {
+
+    const oneMorePageRowNum = currPage*(rowPerpage)
+
+    return oneMorePageRowNum > dataLength ? dataLength : oneMorePageRowNum
+  }
+
+  return dataLength < rowPerpage ? dataArr : dataArr.slice((currPage -1)*rowPerpage,  getMoreonePageRowOrToTheLastRow(currPage, rowPerpage, dataLength))
+}
+
 
 
 class ShowLocationsArea extends Component{
@@ -50,10 +63,16 @@ class ShowLocationsArea extends Component{
 
    }
 
-   renderLocationCards = (dataArr) => (
+ 
 
-     dataArr.map(d => <LocationCard data={d} key={d.Id} onItemClick={this.handleOnItemClick} />)
-   )
+   renderLocationCards = (dataArr,  currPage, rowPerpage, itemClickCB) => {
+     let splicedDataArr = []
+     if(dataArr.length > 0){
+      
+       splicedDataArr = getSplicedData(dataArr, currPage, rowPerpage)
+     }
+     return splicedDataArr.map(d => <LocationCard data={d} key={d.Id} onItemClick={ itemClickCB } />)
+   }
 
     handleClose = () => {
       this.setState({
@@ -62,10 +81,14 @@ class ShowLocationsArea extends Component{
     }   
 
     render(){
+
+      const { currPage,rowPerpage  } = this.props.currPageInfo
+      const { records:locationInfos } = this.props.locationData
+      const { clickedItemId, isOpen } = this.state
       return (
         <Wrapper> 
-          {this.props.children(getSpecifiedIdData(this.state.clickedItemId, this.props.locationData.records),this.state.isOpen ,this.handleClose)}
-          {this.renderLocationCards(this.props.locationData.records)}
+          {this.props.children(getSpecifiedIdData(clickedItemId, locationInfos),isOpen ,this.handleClose)}
+          {this.renderLocationCards(locationInfos, currPage, rowPerpage, this.handleOnItemClick)}
         </Wrapper>
       )
     }
@@ -76,6 +99,8 @@ class ShowLocationsArea extends Component{
 ShowLocationsArea.propTypes = {
   renderOneDetailLocationId:PropTypes.string,
   locationData:PropTypes.object.isRequired,
+  currPageInfo:PropTypes.object.isRequired,
+  children:PropTypes.func.isRequired,
 }
 
 
