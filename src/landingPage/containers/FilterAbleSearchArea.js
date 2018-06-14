@@ -8,30 +8,31 @@ import LocationDropdownSelector from '../components/LocationDropdownSelector'
 
 
 const FilterableSearchAreaWrapper = Styled.section`
-grid-column:1/2;
-grid-row:2/3;
-border:1px solid black;
+  grid-column:1/2;
+  grid-row:2/3;
+  border:1px solid black;
 
 
-@media (max-width:${props => props.theme.mobileOneColumnWidth}){
-grid-column:1/3;
-grid-row:2/3;
+  @media (max-width:${props => props.theme.mobileOneColumnWidth}){
+    grid-column:1/3;
+    grid-row:2/3;
 }
 `
 
 
 class FilterableSearchArea extends Component{
-constructor(props){
-super(props)
+  constructor(props){
+    super(props)
+  }
+
+  render(){
+    return(
+      <FilterableSearchAreaWrapper>  
+        <LocationDropdownSelector />
+      </FilterableSearchAreaWrapper>  
+    )
+  }
 }
-render(){
-  return(
-    <FilterableSearchAreaWrapper>  
-      <LocationDropdownSelector />
-    </FilterableSearchAreaWrapper>  
-  )
-}
-    }
 
 
 FilterableSearchArea.propTypes = {
@@ -48,9 +49,9 @@ function mapStateToProps(state){
 
 
 function mapDispatchToProps(dispatch){
-return bindActionCreators({
-},
-dispatch)
+  return bindActionCreators({
+  },
+  dispatch)
 }
 
 

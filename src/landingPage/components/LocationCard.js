@@ -106,5 +106,6 @@ const LocationCard = ({data, onItemClick}) => {
 
 LocationCard.propTypes = {
   data:PropTypes.object,
+  onItemClick:PropTypes.func,
 }
 export default LocationCard

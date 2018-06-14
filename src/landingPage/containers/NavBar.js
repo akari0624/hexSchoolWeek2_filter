@@ -49,35 +49,35 @@ margin-bottom:5px;
 `
 
 const SearchBarInnerWrapperForm = Styled.form`
-width:70%;
-border-bottom:2px solid #FFFFFF;
-margin-bottom:24.5px;
+  width:70%;
+  border-bottom:2px solid #FFFFFF;
+  margin-bottom:24.5px;
 
-@media (max-width:${props => props.theme.mobileOneColumnWidth}){
-  padding:5px auto;
-  margin-bottom:0px;
+  @media (max-width:${props => props.theme.mobileOneColumnWidth}){
+    padding:5px auto;
+    margin-bottom:0px;
 }
 `
 
 const InvalidSearchBarInnerWrapperForm = Styled.form`
-width:70%;
-border-bottom:2px solid red;
-margin-bottom:24.5px;
+  width:70%;
+  border-bottom:2px solid red;
+  margin-bottom:24.5px;
 
-@media (max-width:${props => props.theme.mobileOneColumnWidth}){
-  padding:5px auto;
-  margin-bottom:0px;
-}
+  @media (max-width:${props => props.theme.mobileOneColumnWidth}){
+    padding:5px auto;
+    margin-bottom:0px;
+  }  
 `
 
 const SearchInput = Styled.input`
-width:100%;
-background-color:#7828B4;
-border:unset;
-padding-left:20px;
-font-family: Roboto-Italic;
-font-size: 20px;
-color: rgba(255,255,255,0.50);
+  width:100%;
+  background-color:#7828B4;
+  border:unset;
+  padding-left:20px;
+  font-family: Roboto-Italic;
+  font-size: 20px;
+  color: rgba(255,255,255,0.50);
 
   &:focus{
     outline:none;
@@ -85,11 +85,11 @@ color: rgba(255,255,255,0.50);
 
 
 
-@media (max-width:${props => props.theme.mobileOneColumnWidth}){
-font-family: Roboto-Italic;
-font-size: 20px;
-color: #9B9B9B;
-}
+  @media (max-width:${props => props.theme.mobileOneColumnWidth}){
+    font-family: Roboto-Italic;
+      font-size: 20px;
+      color: #9B9B9B;
+  }
 `
 
 
@@ -171,12 +171,9 @@ NavBar.propTypes = {
   fetch_LocationsData:PropTypes.func.isRequired,
 }
 
-function mapStateToProps(state) {
-  return {}
-}
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({fetch_LocationsData}, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
+export default connect(null, mapDispatchToProps)(NavBar)

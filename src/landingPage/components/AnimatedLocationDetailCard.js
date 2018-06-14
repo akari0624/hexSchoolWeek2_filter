@@ -159,6 +159,6 @@ AnimatedLocationDetailCard.propTypes = {
 
   data:PropTypes.object,
 
-  }
+}
 
 export default AnimatedLocationDetailCard

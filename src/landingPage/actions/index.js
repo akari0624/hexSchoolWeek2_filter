@@ -2,6 +2,7 @@ import {FETCH_LOCATION_DATA} from '../action-types'
 import axios from 'axios'
 import {LocationAPI_baseUrl} from '../../api_url'
 import { wrapToAction } from '../../utils'
+import { RECEIVE_PAGE_CHANGE } from '../../applevelthing/action_type' 
 import { toggleLoadingState } from '../../applevelthing/actions'
 
 
@@ -56,4 +57,15 @@ export const fetch_LocationsData = (searchText) => {
     
   }
     
+}
+
+
+export const changePage = (nextPageNum) => {
+
+
+  return {
+    type:RECEIVE_PAGE_CHANGE,
+    payload:{nextPage:nextPageNum}
+  }
+
 }
