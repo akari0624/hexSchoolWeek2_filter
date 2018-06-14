@@ -19,7 +19,7 @@
     ],
     "rules": {
         "indent": [
-            "error",
+            "warn",
             2
         ],
         "linebreak-style": [
@@ -41,7 +41,8 @@
         "describe":false,
         "beforeEach":false,
         "global":false,
-        "__dirname":false
-
+        "__dirname":false,
+        "module":false,
+        "require":false
     }
 }
