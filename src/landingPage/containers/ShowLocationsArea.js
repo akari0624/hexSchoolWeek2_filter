@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Styled from 'styled-components'
 import PropTypes from 'prop-types'
 import AreaSpinnerHOC from '../../applevelthing/components/hoc/AreaLoadingSpinner'
+import ProcessLocationDataHOC from '../../applevelthing/components/hoc/ProcessLocationDataHOC'
 import LocationCard from '../components/LocationCard'
 
 const Wrapper = Styled.section`
@@ -83,7 +84,7 @@ class ShowLocationsArea extends Component{
     render(){
 
       const { currPage,rowPerpage  } = this.props.currPageInfo
-      const { records:locationInfos } = this.props.locationData
+      const { locationData:locationInfos } = this.props
       const { clickedItemId, isOpen } = this.state
       return (
         <Wrapper> 
@@ -97,8 +98,7 @@ class ShowLocationsArea extends Component{
 
 
 ShowLocationsArea.propTypes = {
-  renderOneDetailLocationId:PropTypes.string,
-  locationData:PropTypes.object.isRequired,
+  locationData:PropTypes.array.isRequired,
   currPageInfo:PropTypes.object.isRequired,
   children:PropTypes.func.isRequired,
 }
@@ -106,4 +106,4 @@ ShowLocationsArea.propTypes = {
 
 
 
-export default AreaSpinnerHOC(ShowLocationsArea)
+export default AreaSpinnerHOC( ProcessLocationDataHOC(ShowLocationsArea))

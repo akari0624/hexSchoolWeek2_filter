@@ -3,7 +3,7 @@ import Styled from 'styled-components'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {bindActionCreators} from 'redux'
-import { fetch_LocationsData } from '../actions'
+import { doTextSearch } from '../actions'
 
 
 
@@ -101,7 +101,7 @@ class NavBar extends Component {
     super(props)
 
     this.state = {
-      searchText:'鹽埕區',
+      searchText:this.props.searchTerm,
       isSearchTextInvalid:false,
     }
   }
@@ -123,16 +123,26 @@ class NavBar extends Component {
       }
     }
 
-    handleSearchTextSubmit = e => {
-      e.preventDefault()
+    examineData = () => {
+
       if(this.state.searchText === ''){
         this.setState({
           isSearchTextInvalid:true,
         })
-        return
+        return false
       }
 
-      this.props.fetch_LocationsData(this.state.searchText)
+      return true
+    } 
+
+    handleSearchTextSubmit = e => {
+      e.preventDefault()
+
+      // if(!this.examineData()){
+      //   return
+      // }
+
+      this.props.doTextSearch(this.state.searchText)
 
 
 
@@ -168,12 +178,18 @@ class NavBar extends Component {
 }
 
 NavBar.propTypes = {
-  fetch_LocationsData:PropTypes.func.isRequired,
+  doTextSearch:PropTypes.func.isRequired,
+  searchTerm:PropTypes.string.isRequired,
+}
+
+function mapStateToProps({searchTerm}) {
+
+  return {searchTerm}
 }
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({fetch_LocationsData}, dispatch)
+  return bindActionCreators({doTextSearch}, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(NavBar)
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
