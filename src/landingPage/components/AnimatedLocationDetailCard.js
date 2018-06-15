@@ -119,18 +119,19 @@ const  AnimatedLocationDetailCard   = (props) => {
   }
   if(!props.isOpen){
     return (
-      <OutOfFlowWrapper>  
-        <CardWrapper> 
-          <LocationImageWrapper>
-            <LocationImage src={data.Picture1} alt={data.Picdescribe1} />
-          </LocationImageWrapper>
-          <LocationInfoWrapper>
-            <LocationNameDIV>{data.Name}</LocationNameDIV>
-            <MoreInfoSection>{data.Zone}</MoreInfoSection>
-            <DescriptionSection>{data.Toldescribe}</DescriptionSection>
-          </LocationInfoWrapper>
-        </CardWrapper>
-      </OutOfFlowWrapper>  
+      // <OutOfFlowWrapper>  
+      //   <CardWrapper> 
+      //     <LocationImageWrapper>
+      //       <LocationImage src={data.Picture1} alt={data.Picdescribe1} />
+      //     </LocationImageWrapper>
+      //     <LocationInfoWrapper>
+      //       <LocationNameDIV>{data.Name}</LocationNameDIV>
+      //       <MoreInfoSection>{data.Zone}</MoreInfoSection>
+      //       <DescriptionSection>{data.Toldescribe}</DescriptionSection>
+      //     </LocationInfoWrapper>
+      //   </CardWrapper>
+      // </OutOfFlowWrapper>  
+      null
     )
   }else{
 
