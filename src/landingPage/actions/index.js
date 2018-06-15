@@ -1,10 +1,10 @@
-import {FETCH_LOCATION_DATA} from '../action-types'
+import {FETCH_LOCATION_DATA, CHANGE_SEARCH_TERM, LOCATIONS_DATA_COUNT} from '../action-types'
 import axios from 'axios'
 import {LocationAPI_baseUrl} from '../../api_url'
 import { wrapToAction } from '../../utils'
 import { RECEIVE_PAGE_CHANGE } from '../../applevelthing/action_type' 
 import { toggleLoadingState } from '../../applevelthing/actions'
-
+import { AREA_CHECK_BOX_CHANGE } from '../action-types'
 
 
 
@@ -34,7 +34,7 @@ const onErrorProcessLocationData = (searchText,e) => {
 export const fetch_LocationsData = (searchText) => {
 
   return dispatch => {
-    const url = `${LocationAPI_baseUrl}&q=${searchText}`   
+    const url = `${LocationAPI_baseUrl}`   
 
     dispatch(toggleLoadingState())
 
@@ -43,7 +43,7 @@ export const fetch_LocationsData = (searchText) => {
         response => { 
           dispatch(toggleLoadingState())
           dispatch(wrapToAction(FETCH_LOCATION_DATA, onSuccessProcessLocationData(response.data)))
-          
+          dispatch(wrapToAction(LOCATIONS_DATA_COUNT, response.data.result.records.length))
         }
       
       )
@@ -68,4 +68,27 @@ export const changePage = (nextPageNum) => {
     payload:{nextPage:nextPageNum}
   }
 
+}
+
+export const doTextSearch = (text) => {
+
+  return{
+    type:CHANGE_SEARCH_TERM,
+    payload:text 
+  }
+}
+
+export const updateDataCountAfterDataFiltered = (count) => {
+
+
+  return wrapToAction(LOCATIONS_DATA_COUNT, count)
+
+}
+
+export const doAreaCheckboxFilterSearch = (cBoxArr) => {
+
+  return{
+    type:AREA_CHECK_BOX_CHANGE,
+    payload:cBoxArr 
+  }
 }

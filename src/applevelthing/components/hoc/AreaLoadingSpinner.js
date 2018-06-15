@@ -47,17 +47,9 @@ margin: 60px auto;
 `
 
 
-// const WholeAreaLoadingWrapperHide = Styled.section`
-// width:100%;
-// height:100%;
-// opacity:.5;
-// background-color:#F2F2F2; 
-// z-index:9999;
-// display:none;
-// `
-
 
 const AreaLoadingSpinnerHOC = ComposedComponent =>  props  => (
+
 
   props.isInLoading ?  <WholeAreaLoadingWrapperShow><Loader3 /></WholeAreaLoadingWrapperShow> : <ComposedComponent {...props}/>
    
@@ -83,11 +75,8 @@ AreaLoadingSpinnerHOC.propTypes = {
 
 function mapStateToProps(state) {
     
-  const { locationData,currPageInfo } = state
   return {
     isInLoading : state.appConditionNow.isInLoading,
-    locationData,
-    currPageInfo,
   }
 }
 

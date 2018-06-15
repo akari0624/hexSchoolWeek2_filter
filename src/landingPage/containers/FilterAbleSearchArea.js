@@ -5,6 +5,9 @@ import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 
 import LocationDropdownSelector from '../components/LocationDropdownSelector'
+import KCGAreaCheckboxGroup from '../components/KCGAreaCheckboxGroup'
+import { doAreaCheckboxFilterSearch } from '../actions'
+
 
 
 const FilterableSearchAreaWrapper = Styled.section`
@@ -25,10 +28,16 @@ class FilterableSearchArea extends Component{
     super(props)
   }
 
+  onCBChange = (values) => {
+
+    console.log(values)
+    this.props.doAreaCheckboxFilterSearch(values)
+  }
+
   render(){
     return(
       <FilterableSearchAreaWrapper>  
-        <LocationDropdownSelector />
+        <KCGAreaCheckboxGroup  onCBChange={this.onCBChange}/>
       </FilterableSearchAreaWrapper>  
     )
   }
@@ -37,7 +46,7 @@ class FilterableSearchArea extends Component{
 
 FilterableSearchArea.propTypes = {
 
-
+  doAreaCheckboxFilterSearch:PropTypes.func.isRequired,
   }
 
 
@@ -50,6 +59,8 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
+
+    doAreaCheckboxFilterSearch,
   },
   dispatch)
 }
