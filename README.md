@@ -18,7 +18,22 @@
 
 
 ### 值得一提的使用到的第三方Library
+- 大部分的CSS和動畫都是用Styled-Components手刻，只有  
+  - [分頁區](https://github.com/akari0624/hexSchoolWeek2_filter/blob/master/src/landingPage/containers/PaginationArea.js) 用了[antd的Pagination](https://ant.design/components/pagination/)  
+  - [左方行政區篩選區](https://github.com/akari0624/hexSchoolWeek2_filter/blob/master/src/landingPage/components/KCGAreaCheckboxGroup.js)用了[antd的CheckboxGroup](https://ant.design/components/checkbox/#Checkbox-Group)
 
+### note
+- API有點問題，只會回傳100筆景點資料，所以我在reactDOM render前，先用38個行政區的名字作為參數，用Promise.all包起來，像API做38次像是 
+```javascript
+// url:
+......&q=${行政區名}
+```
+這樣的請求，才能夠抓到完整的資料(有265筆)。
+抓取完後再把[這些資料整理成init state丟進redux裡 變成store](https://github.com/akari0624/hexSchoolWeek2_filter/blob/60c297717db3f2c766a3c8c3d0bb870477498571/src/index.js#L28)
+
+
+### bug
+- 目前手機上滑動起來相當不順
 
 
 
