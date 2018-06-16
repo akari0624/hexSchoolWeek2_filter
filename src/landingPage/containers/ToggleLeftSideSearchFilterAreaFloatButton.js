@@ -28,6 +28,7 @@ const slideDown = keyframes `
    }
 
 `
+const buttonWidthAndHeight = '80px'
 
 const RoundBallButtonPopUp = Styled.div `
 
@@ -35,12 +36,14 @@ const RoundBallButtonPopUp = Styled.div `
 
    @media (max-width:${props => props.theme.mobileOneColumnWidth}){
      display:block;
-     height:40px;
-     width:40px;
+     height:${buttonWidthAndHeight};
+     width:${buttonWidthAndHeight};
      background-color:#7828B4;
      border-radius:50%;
      position:fixed;
      cursor:pointer;
+     background-image:url('http://www.line-tatsujin.com/stamp/detail/a05655/031.png');
+     background-size:${buttonWidthAndHeight} ${buttonWidthAndHeight};
      animation:${flotingUp} 1s forwards;
     }
 
@@ -52,16 +55,19 @@ const RoundBallButtonSlideDown = Styled.div `
 
    @media (max-width:${props => props.theme.mobileOneColumnWidth}){
      display:block;
-     height:40px;
-     width:40px;
+     height:${buttonWidthAndHeight};
+     width:${buttonWidthAndHeight};
      background-color:#7828B4;
      border-radius:50%;
      position:fixed;
      cursor:pointer;
+     background-image:url('http://www.line-tatsujin.com/stamp/detail/a05655/031.png');
+     background-size:${buttonWidthAndHeight} ${buttonWidthAndHeight};
      animation:${slideDown} 1s forwards;
     }
 
 `
+
 
 const ToggleLeftSideSearchFilterAreaFloatingButton = props => {
 

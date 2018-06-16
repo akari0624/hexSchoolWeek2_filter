@@ -9,7 +9,6 @@ const Wrapper = Styled.section`
   grid-column:2/3;
   grid-row:2/3;
   overflow-y:auto;
-  border:1px solid red;
   background-color: #F2F2F2;
 
 

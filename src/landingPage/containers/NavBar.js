@@ -16,7 +16,8 @@ grid-row:1/2;
 
 
 @media (max-width:${props => props.theme.mobileOneColumnWidth}){
-  flex-direction:column
+  flex-direction:column;
+  justify-content:center;
 }
 `
 
@@ -28,24 +29,28 @@ padding-left:6.5%;
 font-family: Optima-ExtraBlack;
 font-size: 36px;
 color: #FFFFFF;
-border:1px solid green;
 
 @media (max-width:${props => props.theme.mobileOneColumnWidth}){
   width:100%;
-  padding:5px auto;
+  padding-left:0;
+  padding-top:8px;
+  padding-bottom:8px;
+  text-align:center;
 }
 
 `
 
 const SearchBarOutterWrapper = Styled.div`
-width:calc(70% - 50px);
-padding-left:50px;
-@media (max-width:${props => props.theme.mobileOneColumnWidth}){
-  width:100%;
-  padding-left:0px;
-}
-align-self:flex-end
-margin-bottom:5px;
+  width:calc(70% - 50px);
+  padding-left:50px;
+  align-self:flex-end
+  margin-bottom:5px;
+  
+  @media (max-width:${props => props.theme.mobileOneColumnWidth}){
+    width:100%;
+    padding-left:0px;
+  }
+
 `
 
 const SearchBarInnerWrapperForm = Styled.form`
@@ -54,8 +59,7 @@ const SearchBarInnerWrapperForm = Styled.form`
   margin-bottom:24.5px;
 
   @media (max-width:${props => props.theme.mobileOneColumnWidth}){
-    padding:5px auto;
-    margin-bottom:0px;
+    margin:0 auto 20px auto;
 }
 `
 

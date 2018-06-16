@@ -13,8 +13,8 @@ import {fetchAllRealData} from './utils'
  ;(async() => {
 
   try {
-   //  const dataObj = await fetchAllRealData()
-     const dataObj = {records:[],q:'',total:0,errorMsg:''}
+     const dataObj = await fetchAllRealData()
+   //  const dataObj = {records:[],q:'',total:0,errorMsg:''}
 
     console.log('init all locations data', dataObj)
 

@@ -11,8 +11,9 @@ import {changePage} from '../actions'
 const Wrapper = Styled.section `
   grid-column:1/3;
   grid-rows:3/4;
-  border:1px solid purple;
-
+  display:flex;
+  justify-content:center;
+  align-items:center;
 
   @media (max-width:${props => props.theme.mobileOneColumnWidth}){
     grid-rows:4/5;

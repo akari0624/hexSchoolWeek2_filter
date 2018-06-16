@@ -29,12 +29,21 @@ const areaOptions = generateCheckboxArrayOfObject()
 
  
 
-const KCGAreaCheckboxGroup = props => (
 
-  <OutterWrapper>
-    <CheckboxGroup options={areaOptions}  onChange={props.onCBChange} />
-  </OutterWrapper>
-)
+
+const KCGAreaCheckboxGroup = props => {
+
+  const outterWrapStopPropagation = (values) => {
+
+    props.onCBChange(values)
+  }
+
+  return(
+    <OutterWrapper>
+      <CheckboxGroup options={areaOptions}  onChange={outterWrapStopPropagation} />
+    </OutterWrapper>
+  )
+}
 
 KCGAreaCheckboxGroup.propTypes = {
 

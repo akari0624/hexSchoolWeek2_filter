@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 
-import LocationDropdownSelector from '../components/LocationDropdownSelector'
 import KCGAreaCheckboxGroup from '../components/KCGAreaCheckboxGroup'
 import { doAreaCheckboxFilterSearch, toggleLeftSideFilterableAreaIsOpen } from '../actions'
 
@@ -13,13 +12,7 @@ import { doAreaCheckboxFilterSearch, toggleLeftSideFilterableAreaIsOpen } from '
 const FilterableSearchAreaWrapper = Styled.section`
   grid-column:1/2;
   grid-row:2/3;
-  border:1px solid black;
 
-
-  /* @media (max-width:${props => props.theme.mobileOneColumnWidth}){
-    grid-column:1/3;
-    grid-row:2/3;
-} */
 
 @media (max-width:${props => props.theme.mobileOneColumnWidth}){
     display:none;
@@ -41,14 +34,12 @@ const AnimatedFilterableWholeScreenWrapper = Styled.section`
   width:100vw;  
   height:100vh;
   background-color:rgba(0,0,0,.5);
-  border:1px solid black;
   `
 
 
 const AnimatedFilterableSearchArea = Styled.div`
 width:50%;
 height:100vh;
-opacity:1.0;
 background-color:#FFFFFF;
 transform:translateZ(10);
 animation:${AnimatedFilterableAreaFromLeftToRight} 1s forwards;
