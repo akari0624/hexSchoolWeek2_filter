@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import Styled from 'styled-components'
+import Styled, { keyframes } from 'styled-components'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
@@ -16,12 +16,44 @@ const FilterableSearchAreaWrapper = Styled.section`
   border:1px solid black;
 
 
-  @media (max-width:${props => props.theme.mobileOneColumnWidth}){
+  /* @media (max-width:${props => props.theme.mobileOneColumnWidth}){
     grid-column:1/3;
     grid-row:2/3;
-}
+} */
+
+@media (max-width:${props => props.theme.mobileOneColumnWidth}){
+    display:none;
+    }
 `
 
+const AnimatedFilterableAreaFromLeftToRight = keyframes`
+  from {
+    transform:translateX(-100vw);
+  }
+
+  to {
+    transform:translateX(0px);
+  }
+`
+
+const AnimatedFilterableWholeScreenWrapper = Styled.section`
+  position:absolute;
+  width:100vw;
+  height:100vh;
+  background-color:black;
+  opacity:.4;
+  border:1px solid black;
+  `
+
+
+const AnimatedFilterableSearchArea = Styled.div`
+width:50%;
+height:100vh;
+opacity:1.0;
+background-color:#FFFFFF;
+transform:translateZ(10);
+animation:${AnimatedFilterableAreaFromLeftToRight} 1s forwards;
+`
 
 class FilterableSearchArea extends Component{
   constructor(props){
@@ -35,11 +67,22 @@ class FilterableSearchArea extends Component{
   }
 
   render(){
+    if(!this.props.appConditionNow.isLeftSideOpen){
+      return(
+        <FilterableSearchAreaWrapper>  
+          <KCGAreaCheckboxGroup  onCBChange={this.onCBChange}/>
+        </FilterableSearchAreaWrapper>  
+      )
+    }
+  
     return(
-      <FilterableSearchAreaWrapper>  
-        <KCGAreaCheckboxGroup  onCBChange={this.onCBChange}/>
-      </FilterableSearchAreaWrapper>  
+      <AnimatedFilterableWholeScreenWrapper>  
+        <AnimatedFilterableSearchArea>  
+          <KCGAreaCheckboxGroup  onCBChange={this.onCBChange}/>
+        </AnimatedFilterableSearchArea>  
+      </AnimatedFilterableWholeScreenWrapper>  
     )
+
   }
 }
 
@@ -47,11 +90,15 @@ class FilterableSearchArea extends Component{
 FilterableSearchArea.propTypes = {
 
   doAreaCheckboxFilterSearch:PropTypes.func.isRequired,
+  appConditionNow:PropTypes.object,
   }
 
 
 function mapStateToProps(state){
-    return {}
+  const { appConditionNow } = state
+  return {
+    appConditionNow
+  }
 }
 
 

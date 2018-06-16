@@ -1,4 +1,4 @@
-import {FETCH_LOCATION_DATA, CHANGE_SEARCH_TERM, LOCATIONS_DATA_COUNT} from '../action-types'
+import {FETCH_LOCATION_DATA, CHANGE_SEARCH_TERM, LOCATIONS_DATA_COUNT, TOGGLE_LEFT_SIDE_FILTERABLE_AREA_ISOPEN} from '../action-types'
 import axios from 'axios'
 import {LocationAPI_baseUrl} from '../../api_url'
 import { wrapToAction } from '../../utils'
@@ -91,4 +91,13 @@ export const doAreaCheckboxFilterSearch = (cBoxArr) => {
     type:AREA_CHECK_BOX_CHANGE,
     payload:cBoxArr 
   }
+}
+
+export const toggleLeftSideFilterableAreaIsOpen = () => {
+
+  return{
+    type:TOGGLE_LEFT_SIDE_FILTERABLE_AREA_ISOPEN,
+    payload:null,
+  }
+
 }

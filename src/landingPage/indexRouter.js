@@ -10,6 +10,7 @@ import PropTypes from 'prop-types'
 import AnimatedLocationDetailCard from './components/AnimatedLocationDetailCard'
 import {bindActionCreators} from '../../../../../../../Library/Caches/typescript/2.9/node_modules/redux';
 import {fetch_LocationsData} from './actions'
+import ToggleLeftSideSearchFilterAreaFloatingButton from '../landingPage/containers/ToggleLeftSideSearchFilterAreaFloatButton'
 
 const IndexLandingpageWrapper = Styled.main `
 display:grid;
@@ -26,6 +27,8 @@ grid-template-rows:124px calc(100vh - 124px - 45px - 60%) 60% 45px;
 
 class IndexRouter extends Component {
 
+ 
+
   render() {
 
     return (
@@ -35,6 +38,7 @@ class IndexRouter extends Component {
         <ShowLocationsArea>
           {(data, isOpen, toggle) => (<AnimatedLocationDetailCard data={data} isOpen={isOpen} close={toggle}/>)}
         </ShowLocationsArea>
+        <ToggleLeftSideSearchFilterAreaFloatingButton />
         <PaginationArea/>
       </IndexLandingpageWrapper>
 

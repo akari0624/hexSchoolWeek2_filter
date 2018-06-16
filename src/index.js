@@ -13,7 +13,8 @@ import {fetchAllRealData} from './utils'
  ;(async() => {
 
   try {
-    const dataObj = await fetchAllRealData()
+    // const dataObj = await fetchAllRealData()
+     const dataObj = {records:[],q:'',total:0,errorMsg:''}
 
     console.log('init all locations data', dataObj)
 
@@ -27,7 +28,7 @@ import {fetchAllRealData} from './utils'
     const appStore = createStoreWithMiddleware(rootreducers, initLocationState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
     const theme = {
-      mobileOneColumnWidth: '450px',
+      mobileOneColumnWidth: '570px',
       padWidth: '980px'
     }
 

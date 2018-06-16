@@ -53,6 +53,7 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     contentBase: './',
-    port: 9999
+    port: 9999,
+    disableHostCheck: true
   }
 }  

@@ -1,13 +1,17 @@
 import React from 'react'
 import { Checkbox } from 'antd';
 import 'antd/lib/checkbox/style'
+import Styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { KaohsiungAllAreaName } from '../../utils'
 
 
 
-const CheckboxGroup = Checkbox.Group;
+const OutterWrapper = Styled.div`
+margin-left:8px;
+`
 
+const CheckboxGroup = Checkbox.Group;
 /*
 *  [
   { label: '楠梓區', value: '楠梓區' },
@@ -27,8 +31,9 @@ const areaOptions = generateCheckboxArrayOfObject()
 
 const KCGAreaCheckboxGroup = props => (
 
-  <CheckboxGroup options={areaOptions}  onChange={props.onCBChange} />
-
+  <OutterWrapper>
+    <CheckboxGroup options={areaOptions}  onChange={props.onCBChange} />
+  </OutterWrapper>
 )
 
 KCGAreaCheckboxGroup.propTypes = {

@@ -15,7 +15,7 @@ const Wrapper = Styled.section`
 
 @media (max-width:${props => props.theme.mobileOneColumnWidth}){
   grid-column:1/3;
-  grid-row:3/4;
+  grid-row:2/4;
 }
 `
 

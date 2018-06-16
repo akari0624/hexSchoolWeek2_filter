@@ -1,7 +1,7 @@
 import {TOGGLE_LOADING} from '../applevelthing/action_type'
+import { TOGGLE_LEFT_SIDE_FILTERABLE_AREA_ISOPEN } from '../landingPage/action-types'
 
-
-const DefaultAppLevelState = {isInLoading:false}
+const DefaultAppLevelState = {isInLoading:false, isLeftSideOpen:false,}
 
 
 const reverseIsLoading = (state) => {
@@ -14,6 +14,16 @@ const reverseIsLoading = (state) => {
 
 }
 
+const reverseIsLeftSideOpen  = (state) => {
+
+  const newState = {...state}
+
+  newState.isLeftSideOpen = !state.isLeftSideOpen
+
+  return newState
+
+}
+
 export default (state =DefaultAppLevelState, action) => {
 
   switch(action.type){
@@ -21,6 +31,10 @@ export default (state =DefaultAppLevelState, action) => {
 
     return  reverseIsLoading(state)
 
+  case TOGGLE_LEFT_SIDE_FILTERABLE_AREA_ISOPEN:
+    
+    return reverseIsLeftSideOpen(state) 
+    
   default:
 
     return state
