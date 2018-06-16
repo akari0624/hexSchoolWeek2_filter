@@ -17,7 +17,19 @@ const flotingUp = keyframes `
 
 `
 
-const RoundBallButton = Styled.div `
+const slideDown = keyframes `
+
+   from{
+    transform:translate(25px, 80vh);
+   }
+  
+   to{
+    transform:translate(25px, 120vh);
+   }
+
+`
+
+const RoundBallButtonPopUp = Styled.div `
 
     display:none;
 
@@ -34,6 +46,23 @@ const RoundBallButton = Styled.div `
 
 `
 
+const RoundBallButtonSlideDown = Styled.div `
+
+    display:none;
+
+   @media (max-width:${props => props.theme.mobileOneColumnWidth}){
+     display:block;
+     height:40px;
+     width:40px;
+     background-color:#7828B4;
+     border-radius:50%;
+     position:fixed;
+     cursor:pointer;
+     animation:${slideDown} 1s forwards;
+    }
+
+`
+
 const ToggleLeftSideSearchFilterAreaFloatingButton = props => {
 
   const handleFloatingButtonClick = () => {
@@ -41,19 +70,24 @@ const ToggleLeftSideSearchFilterAreaFloatingButton = props => {
     props.toggleLeftSideFilterableAreaIsOpen()
   }
 
-  return (<RoundBallButton onClick={handleFloatingButtonClick}/>)
+  if(!props.isLeftSideOpen){
+  return (<RoundBallButtonPopUp onClick={handleFloatingButtonClick}/>)
+  }
+  
+  return (<RoundBallButtonSlideDown />)
 
 }
 
 ToggleLeftSideSearchFilterAreaFloatingButton.propTypes = {
 
   toggleLeftSideFilterableAreaIsOpen:PropTypes.func.isRequired,
+  isLeftSideOpen:PropTypes.bool.isRequired,
 }
 
 function mapStateToProps(state) {
   const { appConditionNow } = state
   return {
-    appConditionNow
+    isLeftSideOpen : appConditionNow.isLeftSideOpen
   }
 }
 
@@ -63,4 +97,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(ToggleLeftSideSearchFilterAreaFloatingButton)
+export default connect(mapStateToProps, mapDispatchToProps)(ToggleLeftSideSearchFilterAreaFloatingButton)

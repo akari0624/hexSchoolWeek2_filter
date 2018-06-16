@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 
 import LocationDropdownSelector from '../components/LocationDropdownSelector'
 import KCGAreaCheckboxGroup from '../components/KCGAreaCheckboxGroup'
-import { doAreaCheckboxFilterSearch } from '../actions'
+import { doAreaCheckboxFilterSearch, toggleLeftSideFilterableAreaIsOpen } from '../actions'
 
 
 
@@ -38,10 +38,9 @@ const AnimatedFilterableAreaFromLeftToRight = keyframes`
 
 const AnimatedFilterableWholeScreenWrapper = Styled.section`
   position:absolute;
-  width:100vw;
+  width:100vw;  
   height:100vh;
-  background-color:black;
-  opacity:.4;
+  background-color:rgba(0,0,0,.5);
   border:1px solid black;
   `
 
@@ -76,7 +75,7 @@ class FilterableSearchArea extends Component{
     }
   
     return(
-      <AnimatedFilterableWholeScreenWrapper>  
+      <AnimatedFilterableWholeScreenWrapper onClick={this.props.toggleLeftSideFilterableAreaIsOpen}>  
         <AnimatedFilterableSearchArea>  
           <KCGAreaCheckboxGroup  onCBChange={this.onCBChange}/>
         </AnimatedFilterableSearchArea>  
@@ -91,6 +90,7 @@ FilterableSearchArea.propTypes = {
 
   doAreaCheckboxFilterSearch:PropTypes.func.isRequired,
   appConditionNow:PropTypes.object,
+  toggleLeftSideFilterableAreaIsOpen:PropTypes.func,
   }
 
 
@@ -108,6 +108,7 @@ function mapDispatchToProps(dispatch){
   return bindActionCreators({
 
     doAreaCheckboxFilterSearch,
+    toggleLeftSideFilterableAreaIsOpen,
   },
   dispatch)
 }
