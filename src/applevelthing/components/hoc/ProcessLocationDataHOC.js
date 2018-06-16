@@ -11,8 +11,7 @@ const filterLocationDataBySearchTerm = (searchTerm, locationData) => {
     return locationData
   }
 
-
-  return locationData.filter(d => d.Name.indexOf(searchTerm) > -1)
+  return locationData.filter(d =>  { return (d.Name.indexOf(searchTerm) > -1 || d.Zone.indexOf(searchTerm) > -1 || d.Toldescribe.indexOf(searchTerm) > -1) })
 
 }
 
