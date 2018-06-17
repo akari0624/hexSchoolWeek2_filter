@@ -2,10 +2,10 @@ self.addEventListener('install', function(e) {
   e.waitUntil(
     caches.open('KCGLocationsFilter').then(function(cache) {
       return cache.addAll([
-        '/vendors~main.bundle.js',
-        '/bundle.js',
-        '/index.html',
-        '/style/style.css',
+        '0.bundle.js',
+        'bundle.js',
+        'index.html',
+        'style/style.css',
       ]);
     })
   );
