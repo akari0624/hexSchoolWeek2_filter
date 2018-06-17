@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {bindActionCreators} from 'redux'
 import { doTextSearch } from '../actions'
-
+import _debounce from 'lodash.debounce'
 
 
 const OuttestWrapper = Styled.nav`
@@ -110,6 +110,12 @@ class NavBar extends Component {
     }
   }
 
+     debouncedSearchWithText = _debounce(() => {
+
+       this.props.doTextSearch(this.state.searchText)
+
+     }, 500)
+
     handleSearchTextChange = e => {
       const searchText = e.target.value
       const { isSearchTextInvalid } = this.state
@@ -125,6 +131,8 @@ class NavBar extends Component {
           searchText
         })
       }
+
+      this.debouncedSearchWithText()
     }
 
     examineData = () => {
