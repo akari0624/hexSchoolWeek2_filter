@@ -40,7 +40,7 @@ const KCGAreaCheckboxGroup = props => {
 
   return(
     <OutterWrapper>
-      <CheckboxGroup options={areaOptions}  onChange={outterWrapStopPropagation} />
+      <CheckboxGroup options={areaOptions}  value={props.nowChecked} onChange={outterWrapStopPropagation} />
     </OutterWrapper>
   )
 }
@@ -48,6 +48,7 @@ const KCGAreaCheckboxGroup = props => {
 KCGAreaCheckboxGroup.propTypes = {
 
   onCBChange:PropTypes.func.isRequired,
+  nowChecked:PropTypes.array.isRequired,
 }
 
 

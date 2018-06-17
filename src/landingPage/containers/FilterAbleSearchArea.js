@@ -60,7 +60,7 @@ class FilterableSearchArea extends Component{
     if(!this.props.appConditionNow.isLeftSideOpen){
       return(
         <FilterableSearchAreaWrapper>  
-          <KCGAreaCheckboxGroup  onCBChange={this.onCBChange}/>
+          <KCGAreaCheckboxGroup  onCBChange={this.onCBChange} nowChecked={this.props.checkedArea}/>
         </FilterableSearchAreaWrapper>  
       )
     }
@@ -68,7 +68,7 @@ class FilterableSearchArea extends Component{
     return(
       <AnimatedFilterableWholeScreenWrapper onClick={this.props.toggleLeftSideFilterableAreaIsOpen}>  
         <AnimatedFilterableSearchArea>  
-          <KCGAreaCheckboxGroup  onCBChange={this.onCBChange}/>
+          <KCGAreaCheckboxGroup  onCBChange={this.onCBChange} nowChecked={this.props.checkedArea}/>
         </AnimatedFilterableSearchArea>  
       </AnimatedFilterableWholeScreenWrapper>  
     )
@@ -82,13 +82,14 @@ FilterableSearchArea.propTypes = {
   doAreaCheckboxFilterSearch:PropTypes.func.isRequired,
   appConditionNow:PropTypes.object,
   toggleLeftSideFilterableAreaIsOpen:PropTypes.func,
+  checkedArea:PropTypes.array,
   }
 
 
 function mapStateToProps(state){
-  const { appConditionNow } = state
+  const { appConditionNow, checkedArea } = state
   return {
-    appConditionNow
+    appConditionNow, checkedArea
   }
 }
 
