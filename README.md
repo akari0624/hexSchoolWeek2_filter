@@ -2,7 +2,7 @@
 
 
 ### DEMO page
-
+- [on github page](https://akari0624.github.io/hexSchoolWeek2_filter/index.html)
 
 ### 本週相關資訊
 - [主辦單位提供的參考設計稿](https://hexschool.github.io/THE_F2E_Design/week2-filter/)
