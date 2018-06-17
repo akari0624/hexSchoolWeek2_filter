@@ -157,13 +157,13 @@ class NavBar extends Component {
       if(!isSearchTextInvalid){
         return (
           <SearchBarInnerWrapperForm onSubmit={this.handleSearchTextSubmit}>  
-            <SearchInput placeHolder="Explore your own activities" value={searchText} onChange={this.handleSearchTextChange}/>  
+            <SearchInput placeholder="Explore your own activities" value={searchText} onChange={this.handleSearchTextChange}/>  
           </SearchBarInnerWrapperForm>
         )
       }
       return(
         <InvalidSearchBarInnerWrapperForm onSubmit={this.handleSearchTextSubmit}>  
-          <SearchInput placeHolder="Explore your own activities" value={searchText} onChange={this.handleSearchTextChange}/>  
+          <SearchInput placeholder="Explore your own activities" value={searchText} onChange={this.handleSearchTextChange}/>  
         </InvalidSearchBarInnerWrapperForm>
       )
     }
@@ -193,7 +193,7 @@ function mapStateToProps({searchTerm}) {
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({doTextSearch}, dispatch)
+  return bindActionCreators({ doTextSearch }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
