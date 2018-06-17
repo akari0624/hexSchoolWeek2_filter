@@ -33,16 +33,6 @@
     <div class="loader container" style="width:100%;height:100%"></div>
 
 
-<script type="text/javascript">
-    if('serviceWorker' in navigator) {
-  navigator.serviceWorker
-           .register('sw.js')
-           .then(function() { console.log("Service Worker Registered"); })
-           .catch(function(err){'error occured while install serviceWorker errorMsg:'+err});
-}
-    </script>  
- <!-- 使用HtmlWebPackPlugin 的話 這邊就不用自己打 webpack會幫忙填入，自己打的話 會變載入兩次 bundle.js!-->
-  <!-- <script src="/bundle.js"></script> -->
 
 <script type="text/javascript" src="0.bundle.js"></script><script type="text/javascript" src="bundle.js"></script></body>
 </html>
