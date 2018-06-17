@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style/style.css">
+ <style>
+ 
+ .loader:empty {
+  position: absolute;
+  top: calc(50% - 4em);
+  left: calc(50% - 4em);
+  width: 6em;
+  height: 6em;
+  border: 1.1em solid rgba(0, 0, 0, 0.2);
+  border-left: 1.1em solid #000000;
+  border-radius: 50%;
+  animation: load8 1.1s infinite linear;
+}
+
+@keyframes load8 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+ </style>
+
+  </head>
+  <body style="width:100%;height:100%">
+    <div class="loader container" style="width:100%;height:100%"></div>
+
+
+<script type="text/javascript">
+    if('serviceWorker' in navigator) {
+  navigator.serviceWorker
+           .register('/sw.js')
+           .then(function() { console.log("Service Worker Registered"); })
+           .catch(function(err){'error occured while install serviceWorker errorMsg:'+err});
+}
+    </script>  
+ <!-- 使用HtmlWebPackPlugin 的話 這邊就不用自己打 webpack會幫忙填入，自己打的話 會變載入兩次 bundle.js!-->
+  <!-- <script src="/bundle.js"></script> -->
+
+<script type="text/javascript" src="/asset/0.bundle.js"></script><script type="text/javascript" src="/asset/bundle.js"></script></body>
+</html>
