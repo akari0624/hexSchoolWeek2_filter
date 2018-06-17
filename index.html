@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="style/style.css">
  <style>
  
  .loader:empty {
@@ -36,7 +36,7 @@
 <script type="text/javascript">
     if('serviceWorker' in navigator) {
   navigator.serviceWorker
-           .register('/sw.js')
+           .register('sw.js')
            .then(function() { console.log("Service Worker Registered"); })
            .catch(function(err){'error occured while install serviceWorker errorMsg:'+err});
 }
@@ -44,5 +44,5 @@
  <!-- 使用HtmlWebPackPlugin 的話 這邊就不用自己打 webpack會幫忙填入，自己打的話 會變載入兩次 bundle.js!-->
   <!-- <script src="/bundle.js"></script> -->
 
-<script type="text/javascript" src="/asset/0.bundle.js"></script><script type="text/javascript" src="/asset/bundle.js"></script></body>
+<script type="text/javascript" src="0.bundle.js"></script><script type="text/javascript" src="bundle.js"></script></body>
 </html>
