@@ -72,9 +72,17 @@ export const changePage = (nextPageNum) => {
 
 export const doTextSearch = (text) => {
 
-  return{
-    type:CHANGE_SEARCH_TERM,
-    payload:text 
+  return (dispatch) => {
+    dispatch(wrapToAction(CHANGE_SEARCH_TERM, text))
+    dispatch(wrapToAction(RECEIVE_PAGE_CHANGE, {nextPage:1}))
+  }
+}
+
+export const doAreaCheckboxFilterSearch = (cBoxArr) => {
+
+  return (dispatch) => {
+    dispatch(wrapToAction(AREA_CHECK_BOX_CHANGE, cBoxArr))
+    dispatch(wrapToAction(RECEIVE_PAGE_CHANGE, {nextPage:1}))
   }
 }
 
@@ -83,14 +91,6 @@ export const updateDataCountAfterDataFiltered = (count) => {
 
   return wrapToAction(LOCATIONS_DATA_COUNT, count)
 
-}
-
-export const doAreaCheckboxFilterSearch = (cBoxArr) => {
-
-  return{
-    type:AREA_CHECK_BOX_CHANGE,
-    payload:cBoxArr 
-  }
 }
 
 export const toggleLeftSideFilterableAreaIsOpen = () => {

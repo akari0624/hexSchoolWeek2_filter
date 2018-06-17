@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import Styled from 'styled-components'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
@@ -20,25 +20,46 @@ const Wrapper = Styled.section `
 }
 `
 
-const PaginationArea = ({afterConditionDataCount, changePage}) => {
+class PaginationArea extends Component {
 
-  const onPageOrRowPerPageChange = (newPageNum, pageSize) => {
-
-    changePage(newPageNum)
+  state = {
+    currPage: 1
   }
 
-  const dataLength = afterConditionDataCount
+  onPageOrRowPerPageChange = (newPageNum, pageSize) => {
 
-  return (
-    <Wrapper>
-      <Pagination
-        defaultCurrent={1}
-        total={dataLength}
-        defaultPageSize={5}
-        onChange={onPageOrRowPerPageChange}/>
-    </Wrapper>
-  )
+    this
+      .props
+      .changePage(newPageNum)
 
+    this.setState({currPage: newPageNum})
+  }
+
+  render() {
+
+    const {afterConditionDataCount, changePage} = this.props
+
+    console.log('length changed', afterConditionDataCount)
+
+    const isPropsIsNew = this.lastProps !== this.props
+    this.lastProps = this.props
+    return (
+      <Wrapper>
+        <Pagination
+          current={isPropsIsNew ? 1 : this.state.currPage}
+          total={afterConditionDataCount}
+          defaultPageSize={5}
+          onChange={this.onPageOrRowPerPageChange}/>
+      </Wrapper>
+    )
+
+  }
+
+  componentDidMount() {
+
+    this.lastProps = this.props
+
+  }
 }
 
 PaginationArea.propTypes = {
@@ -48,7 +69,7 @@ PaginationArea.propTypes = {
 }
 
 function mapStateToProps({afterConditionDataCount}) {
-  
+
   return {afterConditionDataCount}
 }
 
