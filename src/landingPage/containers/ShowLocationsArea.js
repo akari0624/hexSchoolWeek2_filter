@@ -30,20 +30,6 @@ const getSpecifiedIdData = (id, dataArr) => {
   return arr[0]
 }
 
-const getSplicedData = (dataArr,  currPage, rowPerpage) =>  {
-
-  const dataLength = dataArr.length
-  const getMoreonePageRowOrToTheLastRow = (currPage, rowPerpage, dataLength) => {
-
-    const oneMorePageRowNum = currPage*(rowPerpage)
-
-    return oneMorePageRowNum > dataLength ? dataLength : oneMorePageRowNum
-  }
-
-  return dataLength < rowPerpage ? dataArr : dataArr.slice((currPage -1)*rowPerpage,  getMoreonePageRowOrToTheLastRow(currPage, rowPerpage, dataLength))
-}
-
-
 
 class ShowLocationsArea extends Component{
 
@@ -66,12 +52,8 @@ class ShowLocationsArea extends Component{
  
 
    renderLocationCards = (dataArr,  currPage, rowPerpage, itemClickCB) => {
-     let splicedDataArr = []
-     if(dataArr.length > 0){
-      
-       splicedDataArr = getSplicedData(dataArr, currPage, rowPerpage)
-     }
-     return splicedDataArr.map(d => <LocationCard data={d} key={d.Id} onItemClick={ itemClickCB } />)
+
+     return dataArr.map(d => <LocationCard data={d} key={d.Id} onItemClick={ itemClickCB } />)
    }
 
     handleClose = () => {

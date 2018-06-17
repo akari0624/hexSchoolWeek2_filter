@@ -31,6 +31,26 @@ const  filterLocationDataByCheckedArea = (checkedAreaArr, locationData)  => {
 
 }
 
+const getSlicedDataDependOnPage = (dataArr,  currPage, rowPerpage) =>  {
+
+  const dataLength = dataArr.length
+
+  if(dataLength > 0){
+
+    const getMoreonePageRowOrToTheLastRow = (currPage, rowPerpage, dataLength) => {
+
+      const oneMorePageRowNum = currPage*(rowPerpage)
+
+      return oneMorePageRowNum > dataLength ? dataLength : oneMorePageRowNum
+    }
+
+    return dataLength < rowPerpage ? dataArr : dataArr.slice((currPage -1)*rowPerpage,  getMoreonePageRowOrToTheLastRow(currPage, rowPerpage, dataLength))
+  }
+
+  return dataArr
+
+}
+
 
 const ProcessLocationDataHOC = ComposedComponent => (props) => {
 
@@ -46,8 +66,15 @@ const ProcessLocationDataHOC = ComposedComponent => (props) => {
 
   updateDataCountAfterDataFiltered(newLocationData.length)
 
-  return (<ComposedComponent locationData={newLocationData} currPageInfo={currPageInfo} searchTerm={searchTerm}>
-   {props.children}
+
+  
+
+  const finalLocationData = getSlicedDataDependOnPage(newLocationData, currPageInfo.currPage, currPageInfo.rowPerpage)
+
+  
+
+  return (<ComposedComponent locationData={finalLocationData} currPageInfo={currPageInfo} searchTerm={searchTerm}>
+    {props.children}
   </ComposedComponent>)
 
 }
