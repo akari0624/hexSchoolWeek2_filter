@@ -37,10 +37,16 @@ const OutOfFlowWrapperRToL = Styled.div`
   overflow-y:auto;
   width:100vw;
   z-index:500;
-  transform:translateX(-100vw);
   cursor:pointer;
   background-color:#FFFFFF;
   animation: ${rightToLeft} 1s forwards;
+`
+
+const CloseButton = Styled.div`
+  position:absolute;
+  top:5px;
+  right:13px;
+  font-size:20px;
 `
 
 const OutOfFlowWrapperLToR = Styled.div`
@@ -136,7 +142,8 @@ const  AnimatedLocationDetailCard   = (props) => {
   }else{
 
     return (
-      <OutOfFlowWrapperRToL  onClick={props.close}>
+      <OutOfFlowWrapperRToL>
+        <CloseButton onClick={props.close}><i className="fas fa-times"></i></CloseButton>
         <CardWrapper> 
           <LocationImageWrapper>
             <LocationImage src={data.Picture1} alt={data.Picdescribe1} />
